@@ -5,7 +5,7 @@ import '../models/todo.dart';
 
 class TodoFirebase {
   late CollectionReference todosReference; // collection 'todos' reference
-  late Stream<QuerySnapshot> todoStream; // stream of todos
+  Stream<QuerySnapshot>? todoStream; // stream of todos
 
   Future initDb() async {
     todosReference = FirebaseFirestore.instance.collection('todos');
