@@ -124,7 +124,8 @@ class _ListScreenState extends State<ListScreen> {
                                 ),
                                 Container(
                                   padding: const EdgeInsets.all(10),
-                                  child: Text('설명 : ${todos[index].description}'),
+                                  child:
+                                      Text('설명 : ${todos[index].description}'),
                                 )
                               ],
                             );
@@ -144,7 +145,8 @@ class _ListScreenState extends State<ListScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       String title = todos[index].title;
-                                      String description = todos[index].description;
+                                      String description =
+                                          todos[index].description;
                                       return AlertDialog(
                                         title: const Text('할 일 수정하기'),
                                         content: Container(
@@ -164,7 +166,8 @@ class _ListScreenState extends State<ListScreen> {
                                                   description = value;
                                                 },
                                                 decoration: InputDecoration(
-                                                  hintText: todos[index].description,
+                                                  hintText:
+                                                      todos[index].description,
                                                 ),
                                               ),
                                             ],
@@ -176,14 +179,15 @@ class _ListScreenState extends State<ListScreen> {
                                             onPressed: () async {
                                               Todo newTodo = Todo(
                                                 id: todos[index].id,
-                                                title : title,
+                                                title: title,
                                                 description: description,
                                               );
                                               setState(() {
                                                 todoDefault.updateTodo(newTodo);
                                               });
                                               Navigator.of(context).pop();
-                                            },),
+                                            },
+                                          ),
                                           TextButton(
                                             child: const Text('취소'),
                                             onPressed: () {
@@ -214,7 +218,8 @@ class _ListScreenState extends State<ListScreen> {
                                             child: const Text('삭제'),
                                             onPressed: () async {
                                               setState(() {
-                                                todoDefault.deleteTodo(todos[index].id ?? 0);
+                                                todoDefault.deleteTodo(
+                                                    todos[index].id ?? 0);
                                               });
                                               Navigator.of(context).pop();
                                             },
