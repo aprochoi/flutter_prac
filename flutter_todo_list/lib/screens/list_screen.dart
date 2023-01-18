@@ -6,6 +6,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_list/providers/todo_firestore.dart';
 import 'package:flutter_todo_list/providers/todo_sqlite.dart';
+import 'package:flutter_todo_list/screens/news_screen.dart';
 
 import '../models/todo.dart';
 
@@ -48,7 +49,11 @@ class _ListScreenState extends State<ListScreen> {
                   title: const Text('할 일 목록 앱'),
                   actions: [
                     InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) => NewsScreen()),
+                        );
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(5),
                         child: Column(

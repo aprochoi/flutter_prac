@@ -6,6 +6,6 @@ class News {
 
   News.fromMap(Map<String, dynamic>? map) {
     title = map?['title'] ?? '';
-    description = map?[description] ?? '';
+    description = map?['description'] ?? '';
   }
 }

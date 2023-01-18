@@ -1,6 +1,5 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_list/providers/news_api.dart';
 
 import '../models/news.dart';
 
@@ -14,13 +13,20 @@ class NewsScreen extends StatefulWidget {
 class _NewsScreenState extends State<NewsScreen> {
   List<News> news = [];
   bool isLoading = true;
+  NewsApi newsApi = NewsApi();
+
+  Future initNews() async {
+    news = await newsApi.getNews();
+  }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      isLoading = false;
+    initNews().then((value) {
+      setState(() {
+        isLoading = false;
+      });
     });
   }
 
