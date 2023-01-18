@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_weather/model/model.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
@@ -16,6 +17,9 @@ class _WeatherScreenState extends State<WeatherScreen> {
   late String cityName;
   late int temp;
   var date = DateTime.now();
+  Widget? icon;
+  Model model = Model();
+  String? des;
 
   @override
   void initState() {
@@ -26,8 +30,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
 
   void updateData(dynamic weatherData) {
     double temp2 = weatherData['main']['temp'];
+    int status = weatherData['weather'][0]['id'];
     temp = temp2.round();
     cityName = weatherData['name'];
+    icon = model.getWeatherIcon(status);
+    des = weatherData['weather'][0]['description'];
   }
 
   String getSystemTime() {
@@ -84,7 +91,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               height: 200,
                             ),
                             Text(
-                              'SungNam-Si',
+                              '$cityName',
                               style: GoogleFonts.lato(
                                 fontSize: 35,
                                 fontWeight: FontWeight.bold,
@@ -123,7 +130,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              '-2\u2103',
+                              '$temp\u2103',
                               style: GoogleFonts.lato(
                                 fontSize: 85,
                                 fontWeight: FontWeight.w300,
@@ -132,12 +139,12 @@ class _WeatherScreenState extends State<WeatherScreen> {
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset('svg/climacon-sun.svg'),
+                                icon!,
                                 SizedBox(
                                   width: 10,
                                 ),
                                 Text(
-                                  'clear sky',
+                                  '$des',
                                   style: GoogleFonts.lato(
                                     fontSize: 16,
                                     color: Colors.white,
