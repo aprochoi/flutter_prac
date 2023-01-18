@@ -6,8 +6,10 @@ import 'package:intl/intl.dart';
 import 'package:timer_builder/timer_builder.dart';
 
 class WeatherScreen extends StatefulWidget {
-  WeatherScreen({required this.parseWeatherData});
+  WeatherScreen(
+      {required this.parseWeatherData, required this.parseAirPollution});
   final parseWeatherData;
+  final parseAirPollution;
 
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();
@@ -20,21 +22,30 @@ class _WeatherScreenState extends State<WeatherScreen> {
   Widget? icon;
   Model model = Model();
   String? des;
+  Widget? airIcon;
+  Widget? airState;
+  late double dust1;
+  late double dust2;
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    updateData(widget.parseWeatherData);
+    updateData(widget.parseWeatherData, widget.parseAirPollution);
   }
 
-  void updateData(dynamic weatherData) {
+  void updateData(dynamic weatherData, dynamic airData) {
     double temp2 = weatherData['main']['temp'];
     int status = weatherData['weather'][0]['id'];
+    int index = airData['list'][0]['main']['aqi'];
     temp = temp2.round();
     cityName = weatherData['name'];
     icon = model.getWeatherIcon(status);
     des = weatherData['weather'][0]['description'];
+    airIcon = model.getAirIcon(index);
+    airState = model.getAirCondition(index);
+    dust1 = airData['list'][0]['components']['pm10'];
+    dust2 = airData['list'][0]['components']['pm2_5'];
   }
 
   String getSystemTime() {
@@ -179,21 +190,11 @@ class _WeatherScreenState extends State<WeatherScreen> {
                               SizedBox(
                                 height: 10,
                               ),
-                              Image.asset(
-                                'image/bad.png',
-                                width: 37,
-                                height: 35,
-                              ),
+                              airIcon!,
                               SizedBox(
                                 height: 10,
                               ),
-                              Text(
-                                '"매우나쁨"',
-                                style: GoogleFonts.lato(
-                                    fontSize: 14,
-                                    color: Colors.black87,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                              airState!
                             ],
                           ),
                           Column(
@@ -209,7 +210,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 10,
                               ),
                               Text(
-                                '173.75',
+                                '$dust1',
                                 style: GoogleFonts.lato(
                                   fontSize: 24,
                                   color: Colors.white,
@@ -240,7 +241,7 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                 height: 10,
                               ),
                               Text(
-                                '84.03',
+                                '$dust2',
                                 style: GoogleFonts.lato(
                                   fontSize: 24,
                                   color: Colors.white,
