@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_weather/data/my_location.dart';
 import 'package:flutter_weather/data/network.dart';
 import 'package:flutter_weather/screens/weather_screen.dart';
@@ -61,16 +62,10 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: ElevatedButton(
-          onPressed: null,
-          style: ElevatedButton.styleFrom(primary: Colors.blue),
-          child: const Text(
-            'Get My Loaction',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+        body: Center(
+      child: SpinKitWave(
+        color: Colors.black,
       ),
-    );
+    ));
   }
 }
