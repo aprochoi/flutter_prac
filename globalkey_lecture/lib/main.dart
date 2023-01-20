@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:globalkey_lecture/scaffold.dart';
 import 'package:logger/logger.dart';
 
 var logger = Logger(printer: PrettyPrinter(methodCount: 0));
@@ -33,8 +34,20 @@ class MyKey extends StatelessWidget {
         title: const Text('Global Key'),
       ),
       body: Center(
-        child: Counter(
-          key: counterKey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Counter(
+              key: counterKey,
+            ),
+            ElevatedButton(
+              child: const Text('Go Next Page'),
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => NewPage()));
+              },
+            )
+          ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
