@@ -15,25 +15,28 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyPage(),
+      home: MyPage(),
     );
   }
 }
 
 class MyPage extends StatelessWidget {
-  const MyPage({Key? key}) : super(key: key);
+  MyPage({Key? key}) : super(key: key);
+
+  String name = 'Youngmin';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF181818),
+      backgroundColor: const Color(0xFF181818),
       body: Padding(
         padding: const EdgeInsets.symmetric(
           horizontal: 40,
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 80,
             ),
             Row(
@@ -43,15 +46,15 @@ class MyPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     Text(
-                      'Hey, Selena',
-                      style: TextStyle(
+                      'Hey, $name',
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 28,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     Text(
-                      'Welcomde back',
+                      'Welcome back',
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.8),
                         fontSize: 18,
@@ -61,6 +64,55 @@ class MyPage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 120,
+            ),
+            Text(
+              'Total balance',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.white.withOpacity(0.8),
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            const Text(
+              '\$5,194,482',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 48,
+                color: Colors.white,
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(
+                        0xFFF2B33A,
+                      ),
+                      borderRadius: BorderRadius.circular(
+                        45,
+                      )),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 50,
+                    ),
+                    child: Text(
+                      'Transfer',
+                      style: TextStyle(
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),
