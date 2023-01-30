@@ -31,7 +31,7 @@ class MyPage extends StatelessWidget {
       backgroundColor: const Color(0xFF181818),
       body: Padding(
         padding: const EdgeInsets.symmetric(
-          horizontal: 40,
+          horizontal: 20,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +70,7 @@ class MyPage extends StatelessWidget {
             Text(
               'Total balance',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 20,
                 color: Colors.white.withOpacity(0.8),
               ),
             ),
@@ -81,7 +81,7 @@ class MyPage extends StatelessWidget {
               '\$5,194,482',
               style: TextStyle(
                 fontWeight: FontWeight.w600,
-                fontSize: 48,
+                fontSize: 40,
                 color: Colors.white,
               ),
             ),
@@ -89,6 +89,7 @@ class MyPage extends StatelessWidget {
               height: 30,
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
                   decoration: BoxDecoration(
@@ -111,8 +112,28 @@ class MyPage extends StatelessWidget {
                     ),
                   ),
                 ),
+                Container(
+                  decoration: BoxDecoration(
+                      color: const Color(0xFF1F2123),
+                      borderRadius: BorderRadius.circular(
+                        45,
+                      )),
+                  child: const Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: 20,
+                      horizontal: 50,
+                    ),
+                    child: Text(
+                      'Request',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ),
+                    ),
+                  ),
+                )
               ],
-            )
+            ),
           ],
         ),
       ),
